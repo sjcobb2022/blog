@@ -21,6 +21,7 @@ export default defineConfig({
 				mdsvex({
 					extensions: ['.svx', '.md'],
 					remarkPlugins: [remarkMath],
+                                        /* @ts-ignore */
 					rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeKatexSvelte]
 				})
 			],
