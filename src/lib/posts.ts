@@ -3,6 +3,7 @@ import { type Component } from 'svelte';
 export interface Post {
 	slug: string;
 	title: string;
+	description: string;
 	date: string;
 	categories: string[];
 	published: boolean;
@@ -13,15 +14,14 @@ interface MarkdownModule {
 	default: Component;
 }
 
-const modules = import.meta.glob<MarkdownModule>('/src/posts/*.md');
-const eagerModules = import.meta.glob<MarkdownModule>('/src/posts/*.md', { eager: true });
+const modules = import.meta.glob<MarkdownModule>('/src/posts/*.md', { eager: true });
 
 const toSlug = (path: string) => path.split('/').at(-1)!.replace('.md', '');
 
 export function getPosts(): Post[] {
-	return Object.entries(eagerModules)
+	return Object.entries(modules)
 		.map(([path, { metadata }]) => ({ ...metadata, slug: toSlug(path) }) satisfies Post)
-		.filter((post) => post.published)
+		.filter((post) => post.published ?? false)
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -38,6 +38,6 @@ export function getPostSlugs(): { slug: string }[] {
 }
 
 export async function getPost(slug: string) {
-	const { metadata, default: content } = await modules[`/src/posts/${slug}.md`]();
+	const { metadata, default: content } = modules[`/src/posts/${slug}.md`];
 	return { ...metadata, slug, content };
 }
