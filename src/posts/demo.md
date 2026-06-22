@@ -1,6 +1,12 @@
 ---
 title: Tufte CSS
 date: '2026-6-20'
+published: true
+categories:
+  - 'demo'
+  - 'css'
+  - 'writing'
+  - 'typography'
 ---
 
 # Tufte CSS

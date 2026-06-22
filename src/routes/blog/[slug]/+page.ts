@@ -1,19 +1,11 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad, EntryGenerator } from './$types';
+import { getPost, getPostSlugs } from '$lib/posts';
 
-const modules = import.meta.glob('/src/posts/*.md');
-
-export const entries: EntryGenerator = () => {
-	return Object.keys(modules).map((path) => ({
-		slug: path.replace('/src/posts/', '').replace('.md', '')
-	}));
-};
+export const entries: EntryGenerator = () => getPostSlugs();
 
 export const load: PageLoad = async ({ params }) => {
-	const importer = modules[`/src/posts/${params.slug}.md`];
-	if (!importer) error(404, { message: 'Not found' });
-	const post = await importer();
-	const { title, date } = (post as any).metadata;
-	const content = (post as any).default;
-	return { content, title, date };
+	const post = await getPost(params.slug);
+	if (!post) error(404, { message: 'Not found' });
+	return post;
 };

@@ -4,9 +4,9 @@
 </script>
 
 <article>
-        <h1>food for thought</h1>
-	
-        <section>
+	<h1>food for thought</h1>
+
+	<section>
 		{#if data.posts.length === 0}
 			<p>No posts yet.</p>
 		{:else}
@@ -19,7 +19,8 @@
 					{#if post.categories.length > 0}
 						<br /><span class="marginnote">
 							{#each post.categories as cat, i}
-								<a href="/blog/category/{cat}">#{cat}</a>{#if i < post.categories.length - 1}{' '}{/if}
+								<a href="/blog/category/{cat}">#{cat}</a
+								>{#if i < post.categories.length - 1}{' '}{/if}
 							{/each}
 						</span>
 					{/if}

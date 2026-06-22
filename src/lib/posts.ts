@@ -1,3 +1,5 @@
+import { type Component } from 'svelte';
+
 export interface Post {
 	slug: string;
 	title: string;
@@ -8,7 +10,7 @@ export interface Post {
 
 interface MarkdownModule {
 	metadata: Omit<Post, 'slug'>;
-	default: unknown;
+	default: Component;
 }
 
 const modules = import.meta.glob<MarkdownModule>('/src/posts/*.md');
@@ -18,7 +20,7 @@ const toSlug = (path: string) => path.split('/').at(-1)!.replace('.md', '');
 
 export function getPosts(): Post[] {
 	return Object.entries(eagerModules)
-		.map(([path, { metadata }]) => ({ ...metadata, slug: toSlug(path) } satisfies Post))
+		.map(([path, { metadata }]) => ({ ...metadata, slug: toSlug(path) }) satisfies Post)
 		.filter((post) => post.published)
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

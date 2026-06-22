@@ -3,6 +3,6 @@
 </script>
 
 <article>
-        <h1>{page.status}</h1>
-        <p>{page.error?.message}</p>
+	<h1>{page.status}</h1>
+	<p>{page.error?.message}</p>
 </article>
