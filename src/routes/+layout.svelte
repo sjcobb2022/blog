@@ -1,5 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon/favicon_16x16.png';
+	import { resolve } from '$app/paths';
 
 	let { children } = $props();
 </script>
@@ -10,10 +11,10 @@
 
 <header>
 	<nav>
-		<a href="/">Home</a>
-		<a href="/about">About</a>
-		<a href="/projects">Projects</a>
-		<a href="/contact">Contact</a>
+		<a href={resolve('/')}>Home</a>
+		<a href={resolve('/about')}>About</a>
+		<a href={resolve('/projects')}>Projects</a>
+		<a href={resolve('/contact')}>Contact</a>
 	</nav>
 </header>
 
@@ -21,7 +22,7 @@
 
 <footer>
 	<nav>
-		<a href="/rss.xml">RSS</a>
+		<a href={resolve('/rss.xml')}>RSS</a>
 		<a href="https://github.com/sjcobb2022/blog">impl</a>
 		<a href="https://github.com/sjcobb2022">GitHub</a>
 	</nav>
