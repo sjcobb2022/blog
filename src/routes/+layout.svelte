@@ -1,5 +1,5 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon/favicon_16x16.png';
 
 	let { children } = $props();
 </script>
@@ -20,7 +20,11 @@
 {@render children()}
 
 <footer>
-	<!-- TODO: Get a nice header. Add to nix chain? -->
+	<nav>
+		<a href="/rss.xml">RSS</a>
+		<a href="https://github.com/sjcobb2022/blog">impl</a>
+		<a href="https://github.com/sjcobb2022">GitHub</a>
+	</nav>
 </footer>
 
 <style>
