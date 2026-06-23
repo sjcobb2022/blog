@@ -19,6 +19,9 @@ export default defineConfig({
 			adapter: adapter({
 				fallback: '404.html'
 			}),
+			prerender: {
+				origin: process.env.ORIGIN ?? 'https://sjcobb2022.github.io'
+			},
 			paths: {
 				base: process.argv.includes('dev') ? '' : (process.env.BASE_PATH as `/${string}`)
 			},
