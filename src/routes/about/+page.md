@@ -4,10 +4,13 @@
 
 <section>
 
-I am a software engineer currently employed by Visa. I am a firm open source
-supporter and contribute when I can to projects that I use.
+I am a software engineer currently employed by Visa.
 
-I am an avid NixOs/Nix fan and a Rust enjoyer.
+Average NixOs fan and Rust enjoyer.
+
+I am a firm open source supporter and contribute in my free time.
+
+Professionally, I have worked with C# and Java, JS, Python and more.
 
 No AI will ever be used in the creation of this blog.
 

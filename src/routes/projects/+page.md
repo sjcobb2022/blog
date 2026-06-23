@@ -17,8 +17,8 @@ on my dissertation.
 
 ## [NVF](https://github.com/NotAShelf/nvf)
 
-A modular Neovim configuration framework written in Nix. I contribute features
-and fixes.
+A modular Neovim configuration framework written in Nix. I initiated the large
+LSP rewrite in v0.8.
 
 </section>
 
@@ -26,10 +26,9 @@ and fixes.
 
 ## [hyper-util](https://github.com/hyperium/hyper-util)
 
-A utility crate for the hyper HTTP library. I was quite involved in testing and
-
-A utility crate built on top of the hyper HTTP library for Rust. I have
-contributed fixes and been involved in some design discussions.
+A utility crate for the hyper HTTP library. I got quite involved in testing the
+new pooling client before it was released, and I was lucky enough to have some
+good conversations with the wonderful Sean McAurthur.
 
 </section>
 
@@ -37,8 +36,8 @@ contributed fixes and been involved in some design discussions.
 
 ## [nixpkgs](https://github.com/NixOS/nixpkgs)
 
-The Nix packages collection. I have contributed security patches and package
-updates.
+The Nix packages collection. Contributed various security patches in relation to
+apparmor.
 
 </section>
 
@@ -54,7 +53,8 @@ A NixOS hardening module. I contributed the CIS benchmark preset.
 
 ## [Houdini](https://github.com/HoudiniGraphQL/houdini)
 
-A GraphQL client framework in javascript.
+A GraphQL client framework in javascript. I rewrote the type graphql type
+generation for sveltekit. This was a while back now.
 
 </section>
 
