@@ -3,6 +3,7 @@ import * as config from '$lib/config';
 
 export const prerender = true;
 
+// based on: https://joyofcode.xyz/sveltekit-markdown-blog
 export function GET() {
 	const posts = getPosts();
 

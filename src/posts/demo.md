@@ -1,13 +1,13 @@
 ---
 title: Tufte CSS
-date: "2026-6-20"
+date: '2026-6-20'
 published: true
 description: TufteCSS preview
 categories:
-  - "demo"
-  - "css"
-  - "writing"
-  - "typography"
+  - 'demo'
+  - 'css'
+  - 'writing'
+  - 'typography'
 ---
 
 # Tufte CSS
@@ -240,7 +240,7 @@ paragraph:
 <label for="mn-demo" class="margin-toggle">&#8853;</label>
 <input type="checkbox" id="mn-demo" class="margin-toggle" />
 <span class="marginnote">
-  This is a margin note. Notice there isn't a number preceding the note.
+	This is a margin note. Notice there isn't a number preceding the note.
 </span>
 ```
 
@@ -301,13 +301,13 @@ videos, e.g.
 
 ```html
 <figure class="iframe-wrapper">
-  <iframe
-    width="853"
-    height="480"
-    src="https://www.youtube.com/embed/YslQ2625TR4"
-    frameborder="0"
-    allowfullscreen
-  ></iframe>
+	<iframe
+		width="853"
+		height="480"
+		src="https://www.youtube.com/embed/YslQ2625TR4"
+		frameborder="0"
+		allowfullscreen
+	></iframe>
 </figure>
 ```
 
