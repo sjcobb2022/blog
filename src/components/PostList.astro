@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+const { posts } = Astro.props;
+---
+
+{
+  posts.map((post) => (
+    <section>
+      <h2>
+        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+      </h2>
+      {post.data.date && <p>{post.data.date}</p>}
+      {post.data.description && <p>{post.data.description}</p>}
+      {post.data.categories.length > 0 && (
+        <p>
+          {post.data.categories.map((cat: string, i: number) => (
+            <>
+              <a href={`/blog/category/${cat}`}>#{cat}</a>
+              {i < post.data.categories.length - 1 ? " " : ""}
+            </>
+          ))}
+        </p>
+      )}
+    </section>
+  ))
+}

@@ -1,0 +1,13 @@
+---
+interface Props {
+  id?: string;
+  label?: string;
+}
+const { id = Math.random().toString(36).slice(2), label = "⊕" } = Astro.props;
+---
+
+<label for={`mn-${id}`} class="margin-toggle">{label}</label><input
+  type="checkbox"
+  id={`mn-${id}`}
+  class="margin-toggle"
+/><span class="marginnote"><slot /></span>

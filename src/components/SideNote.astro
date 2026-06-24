@@ -1,0 +1,12 @@
+---
+interface Props {
+  id?: string;
+}
+const { id = Math.random().toString(36).slice(2) } = Astro.props;
+---
+
+<label for={`sn-${id}`} class="margin-toggle sidenote-number"></label><input
+  type="checkbox"
+  id={`sn-${id}`}
+  class="margin-toggle"
+/><span class="sidenote"><slot /></span>
