@@ -6,7 +6,7 @@ import { math } from "./src/plugins/math";
 import { headingIds, anchors } from "./src/plugins/heading";
 
 export default defineConfig({
-  site: "https://sjcobb2022.github.io",
+  site: "https://sjcobb2022.github.io/blog",
   output: "static",
   prefetch: {
     defaultStrategy: "hover",
