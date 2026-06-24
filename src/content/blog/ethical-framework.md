@@ -1,6 +1,6 @@
 ---
 title: on the topic of ethical representation.
-published: true
+published: false
 date: "2026-6-20"
 categories:
   - "software"
