@@ -11,3 +11,11 @@ categories:
 # on the topic of ethical representation.
 
 <p class="subtitle">perhaps a shot in the dark</p>
+
+<section>
+A though occured to me recently about the work that I did in my
+[previous research](/blog/tor-research).
+
+The most
+
+</section>

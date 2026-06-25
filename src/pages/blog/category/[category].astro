@@ -4,7 +4,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PostList from "../../../components/PostList.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => data.published);
+  const posts = await getCollection("blog", ({ data }) => data.published || import.meta.env.DEV);
   const categories = [...new Set(posts.flatMap((p) => p.data.categories))];
   return categories.map((category) => ({
     params: { category },

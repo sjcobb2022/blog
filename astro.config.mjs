@@ -2,14 +2,16 @@
 import { defineConfig } from "astro/config";
 import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
-import { math } from "./src/plugins/math";
-import { headingIds, anchors } from "./src/plugins/heading";
+import { katex } from "./src/plugins/katex";
+import { headingIds } from "./src/plugins/heading-ids";
+import { anchors } from "./src/plugins/anchors";
 
 export default defineConfig({
   site: "https://blog.sjc03.org",
   output: "static",
   prefetch: {
     defaultStrategy: "hover",
+    prefetchAll: true,
   },
   integrations: [mdx()],
   markdown: {
@@ -21,7 +23,7 @@ export default defineConfig({
     },
     processor: satteri({
       hastPlugins: [headingIds, anchors],
-      mdastPlugins: [math],
+      mdastPlugins: [katex],
       features: {
         gfm: true,
         frontmatter: true,
