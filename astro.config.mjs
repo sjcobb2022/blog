@@ -9,10 +9,6 @@ import { anchors } from "./src/plugins/anchors";
 export default defineConfig({
   site: "https://blog.sjc03.org",
   output: "static",
-  prefetch: {
-    defaultStrategy: "hover",
-    prefetchAll: true,
-  },
   integrations: [mdx()],
   markdown: {
     shikiConfig: {
