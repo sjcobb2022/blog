@@ -1,0 +1,39 @@
+html {
+  scroll-behavior: smooth;
+}
+
+article {
+  counter-reset: sidenote-counter;
+}
+
+article :is(h1, h2, h3, h4, h5, h6) {
+  position: relative;
+  width: fit-content;
+}
+
+article :is(h1, h2, h3, h4, h5, h6) a[aria-hidden] {
+  position: absolute;
+  inset: 0;
+  cursor: text;
+}
+
+.astro-code,
+.astro-code span {
+  background: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .astro-code,
+  .astro-code span {
+    background: none !important;
+    color: var(--shiki-dark) !important;
+  }
+}
+
+nav {
+  font-size: 1.4rem;
+}
+
+nav a {
+  margin-right: 1.5rem;
+}

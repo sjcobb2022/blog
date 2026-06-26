@@ -1,9 +1,19 @@
 import katexLib, { type KatexOptions as BaseKatexOptions } from "katex";
-import { defineMdastPlugin, type MdastNode, type MdastPluginDefinition } from "satteri";
+import {
+  defineMdastPlugin,
+  type MdastNode,
+  type MdastPluginDefinition,
+} from "satteri";
 
-export type KatexOptions = Omit<BaseKatexOptions, "displayMode" | "throwOnError">;
+export type KatexOptions = Omit<
+  BaseKatexOptions,
+  "displayMode" | "throwOnError"
+>;
 
-type MathLikeNode = Extract<MdastNode, { type: "math" | "inlineMath"; value: string }>;
+type MathLikeNode = Extract<
+  MdastNode,
+  { type: "math" | "inlineMath"; value: string }
+>;
 
 interface DiagnosticContext {
   report(input: {
@@ -24,7 +34,11 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#39;");
 }
 
-function renderKatexError(value: string, error: unknown, options: Readonly<KatexOptions>) {
+function renderKatexError(
+  value: string,
+  error: unknown,
+  options: Readonly<KatexOptions>,
+) {
   const title = escapeHtml(String(error));
   const color = escapeHtml(options.errorColor ?? "#cc0000");
   const content = escapeHtml(value);

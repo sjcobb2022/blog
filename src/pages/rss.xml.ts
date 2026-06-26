@@ -1,16 +1,12 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
+import { getPublishedBlogPosts, SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 export async function GET(context: { site: URL }) {
-  const posts = (
-    await getCollection("blog", ({ data }) => data.published)
-  ).sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-  );
+  const posts = await getPublishedBlogPosts();
 
   return rss({
-    title: "thought for food",
-    description: "a blog about anything i want",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,

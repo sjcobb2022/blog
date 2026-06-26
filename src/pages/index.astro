@@ -1,11 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostList from "../components/PostList.astro";
+import { getPublishedBlogPosts } from "../consts";
 
-const posts = (await getCollection("blog", ({ data }) => data.published || import.meta.env.DEV)).sort(
-  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-);
+const posts = await getPublishedBlogPosts();
 ---
 
 <BaseLayout>

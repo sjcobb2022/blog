@@ -1,20 +1,15 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import PostList from "../../../components/PostList.astro";
+import { getPublishedBlogPosts } from "../../../consts";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => data.published || import.meta.env.DEV);
+  const posts = await getPublishedBlogPosts();
   const categories = [...new Set(posts.flatMap((p) => p.data.categories))];
   return categories.map((category) => ({
     params: { category },
     props: {
-      posts: posts
-        .filter((p) => p.data.categories.includes(category))
-        .sort(
-          (a, b) =>
-            new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-        ),
+      posts: posts.filter((p) => p.data.categories.includes(category)),
     },
   }));
 }
