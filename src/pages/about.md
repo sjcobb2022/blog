@@ -9,13 +9,11 @@ title: about
 
 <section>
 
-I am a software engineer currently employed by Visa.
-
 Average NixOs fan and Rust enjoyer.
 
-I am a firm open source supporter and contribute in my free time.
-
 Professionally, I have worked with C# and Java, JS, Python and more.
+
+I am an open source supporter and contribute in my free time.
 
 No AI will ever be used in the creation of this blog.
 
