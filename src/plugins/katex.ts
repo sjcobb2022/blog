@@ -1,4 +1,4 @@
-/* Taken from https://github.com/baka-gourd/satteri-plugins/tree/main/packages/satteri-katex */ 
+/* Taken from https://github.com/baka-gourd/satteri-plugins/tree/main/packages/satteri-katex */
 /* I prefer to have a copy of my libs */
 /* It's under MPL 2.0 as of 2026-06-29 */
 import katexLib, { type KatexOptions as BaseKatexOptions } from "katex";

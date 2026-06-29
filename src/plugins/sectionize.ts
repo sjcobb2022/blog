@@ -2,7 +2,7 @@ import { defineHastPlugin, type HastContent } from "satteri";
 
 // A (relatively) simple way to remove the need for a manual section before every h2.
 // It takes advantage of 2 behaviours of the 0.7 Satteri parser.
-// 1. <section> elements that wrap other elements are treated as raw 
+// 1. <section> elements that wrap other elements are treated as raw
 //    and are flat.
 // 2. ElementContent and RootContent are similar enough that we can ignore the typescript
 //    warning.
@@ -17,7 +17,7 @@ export const tufteSectionize = defineHastPlugin({
       // If no index, something is wrong
       if (idx === undefined) return;
       // If we are somehow a direct descendant of a section escape early
-      if(parent.type === "element" && parent.tagName === "section") return;
+      if (parent.type === "element" && parent.tagName === "section") return;
 
       // We know that if we count an odd number of <sections> we are probably in one.
       const above = parent.children.slice(0, idx);

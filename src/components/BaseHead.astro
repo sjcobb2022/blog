@@ -14,8 +14,10 @@ const {
   description = SITE_DESCRIPTION,
   image = "/images/bee.jpg",
 } = Astro.props;
+
 const pageTitle =
   title === SITE_TITLE ? SITE_TITLE : `${title} | ${SITE_TITLE}`;
+
 const ogImage = new URL(image, Astro.site);
 ---
 
