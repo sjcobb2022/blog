@@ -1,7 +1,7 @@
 ---
 title: Tufte CSS
 date: "2026-6-20"
-published: false
+published: true
 description: TufteCSS preview
 categories:
   - "demo"

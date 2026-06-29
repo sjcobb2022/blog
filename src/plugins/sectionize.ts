@@ -1,5 +1,14 @@
 import { defineHastPlugin, type HastContent } from "satteri";
 
+// Matches opening section-like tags: <section>, <section id="foo">, etc.
+const isSectionOpen = (value: string) =>
+  /^<section(\s[^>]*)?>$/i.test(value.trim());
+
+const isSectionClose = (value: string) => value.trim() === "</section>";
+
+const isSectionLike = (value: string) =>
+  isSectionOpen(value) || isSectionClose(value);
+
 // A (relatively) simple way to remove the need for a manual section before every h2.
 // It takes advantage of 2 behaviours of the 0.7 Satteri parser.
 // 1. <section> elements that wrap other elements are treated as raw
@@ -24,8 +33,8 @@ export const tufteSectionize = defineHastPlugin({
       let depth = 0;
       for (const child of above) {
         if (child.type === "raw") {
-          if (child.value.trim() === "<section>") depth++;
-          else if (child.value.trim() === "</section>") depth--;
+          if (isSectionOpen(child.value)) depth++;
+          else if (isSectionClose(child.value)) depth--;
         }
       }
       if (depth > 0) return;
@@ -39,12 +48,9 @@ export const tufteSectionize = defineHastPlugin({
           endOffset = i;
           break;
         }
-        if (child.type === "raw") {
-          const v = child.value.trim();
-          if (v === "</section>" || v === "<section>") {
-            endOffset = i;
-            break;
-          }
+        if (child.type === "raw" && isSectionLike(child.value)) {
+          endOffset = i;
+          break;
         }
       }
 
@@ -58,7 +64,7 @@ export const tufteSectionize = defineHastPlugin({
         tagName: "section",
         properties: {},
         // Ignore this warning so we can force a conversion which is a little disgusting but it works...
-        // @ts-ignore
+        // @ts-expect-error RootContent[] is not assignable to ElementContent[]
         children: sectionChildren,
       };
 
