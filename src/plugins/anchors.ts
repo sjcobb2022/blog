@@ -8,6 +8,10 @@ export const anchors = defineHastPlugin({
       const id = node.properties.id;
       if (typeof id !== "string" || !id) return;
 
+      // If we already have some sub-content which is an element and not just text, then return early.
+      // Used in the project.md file to have links instead of references.
+      if (node.children.some((child) => child.type === "element")) return;
+
       const anchor: HastContent = {
         type: "element",
         tagName: "a",
