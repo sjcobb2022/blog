@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
+import FormattedDate from './FormattedDate.astro';
+
 interface Props {
   posts: CollectionEntry<"blog">[];
 }
@@ -13,7 +15,7 @@ const { posts } = Astro.props;
       <h2>
         <a href={`/blog/${post.id}`}>{post.data.title}</a>
       </h2>
-      {post.data.date && <p>{post.data.date}</p>}
+      <p><FormattedDate date={post.data.date} /></p>
       {post.data.description && <p>{post.data.description}</p>}
       {post.data.categories.length > 0 && (
         <p>
