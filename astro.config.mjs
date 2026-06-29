@@ -1,10 +1,10 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import { satteri } from "@astrojs/markdown-satteri";
+import { satteri, satteriHeadingIdsPlugin } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
 import { katex } from "./src/plugins/katex";
-import { headingIds } from "./src/plugins/heading-ids";
 import { anchors } from "./src/plugins/anchors";
+import { tufteSectionize } from "./src/plugins/sectionize";
 
 export default defineConfig({
   site: "https://blog.sjc03.org",
@@ -18,7 +18,7 @@ export default defineConfig({
       },
     },
     processor: satteri({
-      hastPlugins: [headingIds, anchors],
+      hastPlugins: [satteriHeadingIdsPlugin(), anchors, tufteSectionize],
       mdastPlugins: [katex],
       features: {
         gfm: true,
