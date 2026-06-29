@@ -37,3 +37,7 @@ nav {
 nav a {
   margin-right: 1.5rem;
 }
+
+.katex {
+  font-size: 1em !important;
+}
