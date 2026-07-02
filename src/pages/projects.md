@@ -22,8 +22,9 @@ on my dissertation.
 
 ## [NVF](https://github.com/NotAShelf/nvf)
 
-A modular Neovim configuration framework written in Nix. I initiated the large
-LSP rewrite in v0.8.
+A modular Neovim configuration framework written in Nix. I initiated the
+[large LSP rewrite](https://github.com/NotAShelf/nvf/pull/913) in v0.8, and have
+made various other contributions.
 
 ## [hyper-util](https://github.com/hyperium/hyper-util)
 
@@ -33,8 +34,9 @@ good conversations with the wonderful Sean McAurthur.
 
 ## [nixpkgs](https://github.com/NixOS/nixpkgs)
 
-The Nix packages collection. Contributed various security patches in relation to
-apparmor.
+The Nix packages collection. Contributed various
+[security](https://github.com/NixOS/nixpkgs/pull/533428)
+[patches](https://github.com/NixOS/nixpkgs/pull/535329) in relation to apparmor.
 
 ## [nix-mineral](https://github.com/cynicsketch/nix-mineral)
 

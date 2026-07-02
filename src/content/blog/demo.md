@@ -43,8 +43,6 @@ their particular circumstances.
 
 </section>
 
-<section>
-
 ## Getting Started
 
 To use Tufte CSS, copy `tufte.css` and the `et-book` directory of font files to
@@ -58,10 +56,6 @@ block:
 Now you just have to use the provided CSS rules, and the Tufte CSS conventions
 described in this document. For best results, View Source and Inspect Element
 frequently.
-
-</section>
-
-<section>
 
 ## Fundamentals
 
@@ -144,10 +138,6 @@ by default. Other approaches can also be made to work. The goal is to make
 sentences readable without interference from links, as well as to make links
 immediately identifiable even by casual web users.
 
-</section>
-
-<section>
-
 ## Epigraphs
 
 <div class="epigraph">
@@ -174,10 +164,6 @@ the `blockquote`. We have provided three examples in the epigraph of this
 section, demonstrating shorter and longer quotes, with and without a paragraph
 tag, and showing how multiple quotes within an epigraph fit together with the
 use of a wrapper class.
-
-</section>
-
-<section>
 
 ## Sidenotes: Footnotes and Marginal Notes
 
@@ -246,10 +232,6 @@ paragraph:
 
 Figures in the margin are created as margin notes, as demonstrated in the next
 section.
-
-</section>
-
-<section>
 
 ## Figures
 
@@ -326,10 +308,6 @@ You can use this class on a `div` instead of a `figure`, with slightly different
 results but the same general effect. Experiment and choose depending on your
 application.
 
-</section>
-
-<section>
-
 ## Code
 
 Technical jargon, programming language terms, and code samples are denoted with
@@ -362,10 +340,6 @@ This adds control over indentation and overflow as well:
 ;; http://howistart.org/posts/clojure/1
 ```
 
-</section>
-
-<section>
-
 ## ImageQuilts
 
 Tufte CSS provides support for Edward Tufte and Adam Schwartz's
@@ -388,10 +362,6 @@ course still rectangular.
 <figure>
 <img src="https://edwardtufte.github.io/tufte-css/img/imagequilt-animal-sounds.png" alt="Image quilt of animal sounds" />
 </figure>
-
-</section>
-
-<section>
 
 ## LaTeX Support
 
@@ -424,14 +394,8 @@ $$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
 
-</section>
-
-<section>
-
 ## Epilogue
 
 Many thanks go to Edward Tufte for leading the way with his work. It is only
 through his kind and careful editing that this project accomplishes what it
 does. All errors of implementation are of course mine.
-
-</section>
