@@ -1,0 +1,255 @@
+---
+title: in pursuit of an ethical framework for practical dark web research.
+published: false
+date: "2026-6-20"
+categories:
+    - "software"
+    - "ethics"
+    - "privacy"
+---
+
+import SideNote from "../../../components/SideNote.astro";
+
+import MarginNote from "../../../components/MarginNote.astro";
+
+# in pursuit of an ethical framework for practical dark web research.
+
+<p class="subtitle">a thesis</p>
+
+<section>
+
+This blog is a condensation of my bachelors dissertation. I would hope that
+there is some novelty to the ideas presented here, and that it could encourage
+discussion in this area. My aim is to publish a condensed version of the
+original paper when<SideNote>if</SideNote> it meets the ethical and academic
+rigour required by a journal. That being said, I am always open to feedback and
+constructive criticism.
+
+For the subsequent writing, we will refer to Tor as the source of dark web
+material, due to it's more mainstream nature. Nevertheless, I believe that this
+research is applicable to any dark web framework, as it makes no assumptions on
+the way in which data is collected or processed.
+
+<figure class="halfwidth">
+<MarginNote>Onions by <a href="http://wildyorkshire.blog/2022/10/onions/">Richard Bell</a></MarginNote>
+<img src="https://i0.wp.com/wildyorkshire.blog/wp-content/uploads/2022/10/onions1022b.jpg" alt="Onions by Richard Bell 2022" />
+</figure>
+
+</section>
+
+## why write this paper to begin with (change this)
+
+The dark web is slightly paradoxical in nature, where it both enables free
+speech, and serious criminal activity. As such, work in this field places
+researchers in close proximity to highly sensitive material. This can include
+personal disclosures of sensitive topics, criminal marketplaces and media whose
+very possession may be illegal. Despite this, existing work seems to offer a
+limited insight into how researchers protect themselves, their institutions, and
+the people whose data they collect. By disregarding the potential impacts of
+their work, researchers and their institutions may be left open to legal and
+ethical scrutiny.
+
+From the initial reading of the literature, it seems as though there is little
+focus on stakeholder safety. There are often brief justifications that work was
+institutionally approved, or that all content collected was "legally
+permissible". Some papers go as far as to ignore all ethical quandaries and
+include direct quotations from personal sensitive disclosures without censoring
+PII<SideNote>In the sense of leaving usernames and sources for the
+aforementioned disclosures within the paper.</SideNote> (Guitton et al.)
+
+Many studies include brief statements noting institutional review board (IRB)
+approval or that the research poses "minimal risk" to participants (De Pascale
+et al.; Kang & Kim). These statements indicate procedural compliance, but they
+do not explain how ethical risks are identified, managed or implemented in the
+research context.
+
+It seems that some researchers seem to treat ethical approval as a procedural
+checkbox or legitimisation device<SideNote><i>"Our institution said it was
+fine!"</i></SideNote>. As a result the connection between ethical reasoning and
+methodological choice is often unclear.
+
+Other publications fail to disclose any ethical considerations at all (Bergman &
+Popov, 2023; Celestini & Guarino, 2017; David et al., 2021; Guitton, 2013;
+Monterrubio et al., 2021; Park et al., 2018; Pastor-Galindo et al., 2024; Sabbah
+et al., 2016; Sambath et al., 2024; Xu et al., 2021).
+
+The literature also appears to lack consideration for vulnerable populations and
+stakeholders, beyond law-enforcement and cybersecurity perspectives<SideNote>As
+these are often the target audiences for such research.</SideNote>. Much of it
+implicitly frames dark web users as either offenders or investigatory targets
+(De Pascale et al., 2024; Guitton, 2013; Monterrubio et al., 2021; Xu et al.,
+2021). And whilst we do concede that a notable share of the Tor network is
+associated with illegal content, it would be amoral to withhold privacy from
+users with legitimate reasons for maintaining anonymity.
+
+Likewise, there is a near-complete neglect of risks to researchers themselves.
+Brewer et al. (2021) is one of the few sources recognising that automated
+collection of web data in criminology carries risks not only for research
+subjects and websites, but also for researchers who might encounter illegal or
+highly distressing content. They note that collecting and analysing media
+containing child sexual abuse material (CSAM) especially can cause psychological
+harm and open researchers up to criminal charges for accessing and possession,
+and that even textual depictions of serious victimisation can be distressing.
+Researchers may also face reporting obligations or reprisals if their presence
+becomes known. Such concerns are, however, not discussed elsewhere in the
+literature.
+
+Overall, existing Tor research overwhelmingly adopts a procedural conception of
+ethics, often equating ethical adequacy with institutional approval and
+legality. Although we might hope these studies adhere to ethically reasonable
+standards, the morally responsible default is to assume that they do not.
+Without in-depth thought about the underlying ethical decisions, researchers
+could unintentionally cause harm to unsuspecting stakeholders. In neglecting
+this, researchers risk undermining user privacy and exposing them to new harms.
+
+This paper advocates for the security and ethical precautions used by
+researchers to be systematically outlined in a manner that promotes
+reproducibility and accountability across the research community. Such
+transparency enables studies to be conducted in a manner that protects
+researchers, institutions, and vulnerable populations who may require anonymised
+communication.
+
+## zero-trust in research
+
+Regular research is<SideNote>and will continue to be</SideNote> a procedural
+process. It is an inherently incremental task, and as such, it is easy for plans
+to evolve throughout the research lifecycle. More notably, we assume that a
+researcher will guide their project in the "right" direction. This is because
+researchers are generally treated as good-faith trusted actor<SideNote>Whether
+this be the case is obviously subjective.</SideNote>. We claim that this is not
+an adequate ethical foundation for research involving potentially illicit
+material. Exposure to this material carries risks for the researcher, those in
+their immediate surroundings, and the institutions hosting this content.
+
+In response, we propose the concept of zero-trust research, very heavily
+inspired by InfoSec. Where InfoSec treats no user or device as trustworthy, we
+assume that the same is true for a researcher. We do not claim that a researcher
+or institution are unethical, but we recognise that ethical outcomes cannot
+depend on individual discretion. Treating research in terms of zero-trust
+requires technical and procedural constraints that limit how data is handled
+within a system. As common in InfoSec, we enforce these controls through
+auditing and continual verification of research.
+
+## verifiable ethics
+
+Creating a "verifiable" form of ethics is probably the most contentious area of
+this paper, but I believe the intentions to be valid. The
+[full paper](/resources/dissertation.pdf) additionally attempts to prove these
+structures formally.
+
+Nevertheless, I assert that a self-imposed set of principles is not enough for
+Tor research. It requires some formal tools that make ethical claims testable
+through construction.
+
+In this process, I created two complementary formal models, the State Transition
+Harm Model (STHM) and the Ethical Dependency Graph (EDG). Both models take
+inspiration from other ethical modelling systems, such as the Bell-LaPadula
+model and Denning Lattices.
+
+### state transition harm model
+
+The state transition harm model attempts to model the system itself, rather than
+the line of reasoning of the researcher building it. It attempts to map every
+important state that a data artefact can occupy and the transitions permitted
+between them. It attempts to bound the worst-case "harm" (which is defined by
+the researcher) under the assumption that all potential policy<SideNote>And by
+policy we mean non-technical controls, such as facility access</SideNote> has
+failed. If no harmful states are reachable if a researcher were to act rogue,
+then we can call state-space "zero-trust safe". A system that is not "zero-trust
+safe" is only conditionally safe because all stakeholders are acting safely.
+
+For example, if a bad actor were to steal<SideNote>assuming that stealing is
+against institutional policy</SideNote> the device that research was conducted
+on they would be able to access these artefacts unconditionally. A technical
+mitigation to this would be the required encryption of all data-storing devices.
+
+With proper mandatory access controls, this may also protect against researchers
+themselves acting in bad faith. By restricting access to the research material,
+or automating data collection such that harmful states are avoidable, even a
+researcher acting in bad faith should not be able to access the data via the
+mechanisms of the research itself.
+
+// TODO: INSERT DIAGRAM HERE
+
+### ethical dependency graph
+
+At its core, the ethical dependency graph (EDG) attempts to model the line of
+reasoning taken by a researcher. It maps the dependency between decisions, and
+attempts to create a directional graph between all major decisions in a project.
+By rationalising this, we are able to guard against circular reasoning, as a
+graph whose decisions contain a loop is self-justificatory, and therefore
+"invalid" ethically.
+
+To put it more succinctly, the graph of decisions and their relation to each
+other should be acyclic.
+
+// TODO: INSERT DIAGRAM HERE
+
+As an aside, we found that the actual constructions of these diagrams was
+considerably harder that initially expected. Namely the deconstruction of vague
+ideas into distinct decisions that were not a collection of unrelated threads
+was quite difficult.
+
+## implementation
+
+Implementation was started only after the ethical planning and decision making
+was completed. This required significant planning ahead of time, but lead to
+some nifty program optimisations.
+
+The initial idea was to create a simple TOR webpage crawler which would crawl a
+specified page. Thereby allowing comparison against other crawlers in the corpus
+(See [CRATOR](https://arxiv.org/html/2405.06356v1)).
+
+One of the core decisions that ensured that unnecessary data artefacts were not
+accessible on machines at any time was to run all data processing machines
+without a disk<SideNote>This includes the OS, which we netbooted within an
+air-gapped VLAN. All the booted images were also signed and verified using
+secureboot and securely generated private keys.</SideNote>. By running
+disklessly, the entire system was ephemeral. This meant that downloading files
+and processing them later was not a feasible (or RAM efficient) option.
+
+The nifty optimisation which came out of this was processing any input HTTP
+frame by frame. Each frame was passed in order to a "forgetful"<SideNote>By
+forgetful, we mean that it had a tiny internal buffer.</SideNote> state machine.
+The state machine would process the frame byte-by-byte and determine whether it
+was consuming a URL or not. This actually turned out to be an optimisations, as
+it meant that the each thread only needed a 2 buffers; one for the current HTTP
+FRAME and one for the current URL being processed.
+
+It should be noted that the implementation was written in rust and used the arti
+and hyper libraries extensively. During the process I was able to contribute to
+both projects.
+
+Once again, if any of this interests you, feel free to check out the
+[full paper](/resources/dissertation.pdf).
+
+## performance
+
+We compare our results to those found in DePascale et al's work, as that was the
+only comparable software found from the literature review. They further compare
+CRATOR to ACHE (Barbosa et al.).
+
+CRATOR is written in python whilst ACHE is written in Java. Our own crawler
+TRAWLER<SideNote>Tor + Crawler</SideNote> was written in Rust.
+
+From the gathered performance metrics, our crawler outpaced CRATOR and ACHE
+considerably. We attribute this to two core principles. First the choice of
+technology gives crawler a massive advantage in terms of memory usage. Second,
+the algorithmic choice (and a coincidence of the ethical decisions made
+previously), allowed for TRAWLER to scale much more memory-concious, which in
+turn allowed the processing performance of rust to shine.
+
+## further reading
+
+If this blog is of any interest to you, I would recommend reading the
+[full paper](/resources/dissertation.pdf). There is much more technical depth in
+regards to the software/hardware implementation of the supposedly ethical
+crawler. In addition there are performance comparisons against
+[CRATOR](https://arxiv.org/html/2405.06356v1) which was the only analogous
+crawler which also had source available.
+
+I would also recommend reading the
+[DICE-E](https://doi.org/10.25300/MISQ/2019/13808) paper but you may need an
+institutional login to get access to the full text.
+
+Additional reading is left as an exercise for the reader :)
