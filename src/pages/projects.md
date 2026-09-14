@@ -37,6 +37,7 @@ good conversations with the wonderful Sean McAurthur.
 The Nix packages collection. Contributed various
 [security](https://github.com/NixOS/nixpkgs/pull/533428)
 [patches](https://github.com/NixOS/nixpkgs/pull/535329) in relation to apparmor.
+I also maintain the package for [aws/pgactive](https://github.com/aws/pgactive)
 
 ## [nix-mineral](https://github.com/cynicsketch/nix-mineral)
 
