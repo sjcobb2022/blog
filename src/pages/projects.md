@@ -40,7 +40,9 @@ The Nix packages collection. Contributed various
 
 ## [nix-mineral](https://github.com/cynicsketch/nix-mineral)
 
-A NixOS hardening module. I contributed the CIS benchmark preset.
+A NixOS hardening module. I contributed the
+[CIS](https://github.com/cynicsketch/nix-mineral/pull/137) benchmark
+[preset](https://github.com/cynicsketch/nix-mineral/pull/232).
 
 ## [Houdini](https://github.com/HoudiniGraphQL/houdini)
 
