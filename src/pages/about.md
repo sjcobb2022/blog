@@ -11,7 +11,8 @@ title: about
 
 Average NixOs fan and Rust enjoyer.
 
-Professionally, I have worked with C# and Java, JS, Python and more.
+At my current role I (unfortunately) write Java. However I have professional
+experience in C#, JS/TS, Python and a few others.
 
 I am an open source supporter and contribute in my free time.
 

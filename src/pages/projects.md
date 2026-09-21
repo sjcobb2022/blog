@@ -48,6 +48,7 @@ A NixOS hardening module. I contributed the
 ## [Houdini](https://github.com/HoudiniGraphQL/houdini)
 
 A GraphQL client framework in javascript. I rewrote the type graphql type
-generation for sveltekit. This was a while back now.
+generation for sveltekit. This was a while back now so I don't remember many
+details.
 
 </article>
