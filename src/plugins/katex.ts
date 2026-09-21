@@ -91,10 +91,16 @@ export function katex(options?: Readonly<KatexOptions>): MdastPluginDefinition {
   return defineMdastPlugin({
     name: "katex",
     math(node, ctx) {
-      return { rawHtml: renderMath(node, true, settings, ctx) };
+      return {
+        raw: renderMath(node, true, settings, ctx),
+        mdxExpressions: false,
+      };
     },
     inlineMath(node, ctx) {
-      return { type: "html", value: renderMath(node, false, settings, ctx) };
+      const html = renderMath(node, false, settings, ctx);
+      return ctx.sourceFormat === "mdx"
+        ? { raw: html, mdxExpressions: false }
+        : { type: "html", value: html };
     },
   });
 }
