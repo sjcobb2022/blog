@@ -14,7 +14,9 @@ import MarginNote from "../../../components/MarginNote.astro";
 
 import executionTimeImage from "./figures/ExecutionTime.png";
 
-import sthmImage from "./figures/sthm_redaction_diagram.png";
+import sthmImage from "./figures/sthm_diagram.png";
+
+import edgImage from "./figures/edg_diagram.png";
 
 # in pursuit of an ethical framework for practical dark web research.
 
@@ -22,12 +24,17 @@ import sthmImage from "./figures/sthm_redaction_diagram.png";
 
 <section>
 
-This blog is a condensation of my bachelors dissertation. I would hope that
+This blog is a condensation of my bachelor's dissertation. I would hope that
 there is some novelty to the ideas presented here, and that it could encourage
 discussion in this area. My aim is to publish a condensed version of the
 original paper when<SideNote>if</SideNote> it meets the ethical and academic
 rigour required by a journal. That being said, I am always open to feedback and
 constructive criticism.
+
+This is a semi informal writing/retelling of the paper, and there are plenty of
+cut corners and missing information. The
+[full paper](/resources/dissertation.pdf) goes much more in depth, and I would
+highly recommend giving it a read.
 
 For the subsequent writing, we will refer to Tor as the source of dark web
 material, due to it's more mainstream nature. Nevertheless, I believe that this
@@ -47,7 +54,7 @@ the way in which data is collected or processed.
 
 </section>
 
-## why write this paper to begin with (change this)
+## why write this paper?
 
 The dark web is slightly paradoxical in nature, where it both enables free
 speech, and serious criminal activity. As such, work in this field places
@@ -141,6 +148,12 @@ technical and procedural constraints that limit how data is handled within a
 system. As common in InfoSec, we enforce these controls through auditing and
 continual verification of the target research.
 
+One could argue that zero-trust auditing is excessive overhead for exploratory
+research, and that existing procedural ethics is '_good enough_'. We contend
+that in safety-critical systems this expense should not be spared. Tor research
+arguably falls into this category, given that researchers can be exposed to
+extremely disturbing material.
+
 ## verifiable ethics
 
 Creating a "verifiable" form of ethics is probably the most contentious area of
@@ -156,6 +169,10 @@ In this process, we created two complementary formal models, the State
 Transition Harm Model (STHM) and the Ethical Dependency Graph (EDG). Both models
 take inspiration from other ethical modelling systems, such as the Bell-LaPadula
 model and Denning Lattices.
+
+For these models, we will examine the scenario of an institution wanting to
+become more transparent, and decide to release certain redacted versions of
+internal documents.
 
 ### state transition harm model
 
@@ -173,13 +190,17 @@ safely.
 For example, if a bad actor were to steal<SideNote>assuming that stealing is
 against institutional policy</SideNote> the device that research was conducted
 on they would be able to access these artefacts unconditionally. A technical
-mitigation to this would be the required encryption of all data-storing devices.
+mitigation to this would be the required encryption and strong passwords on all
+data-storing devices.
 
 With proper mandatory access controls, this may also protect against researchers
 themselves acting in bad faith. By restricting access to the research material,
 or automating data collection such that harmful states are avoidable, even a
 researcher acting in bad faith should not be able to access the data via the
-mechanisms of the research itself.
+mechanisms of the research itself<SideNote>This of course is somewhat
+unrealistic without careful methodical planning. However we did commit to this
+process for the entirety of the dissertation without exposing any party to any
+research artefacts.</SideNote>.
 
 Below we provide a simple example for redacting a document before publishing. We
 define the states that we want to avoid, and the states that we are required to
@@ -191,8 +212,8 @@ navigate in order to ensure that data is not exposed.
 
 We define a series of actions ($\lambda$) which define what steps would be
 necessary to reach the required state. Publishing a draft artefact would end in
-a forbidden state, for example. Alternatively, redacting the data transfers the
-artefact to a redacted state.
+a forbidden state, for example. Redacting the data converts the data into a
+"safe" state that can then be published.
 
 ### ethical dependency graph
 
@@ -206,12 +227,18 @@ graph whose decisions contain a loop is self-justificatory, and therefore
 To put it more succinctly, the graph of decisions and their relation to each
 other should be acyclic.
 
-// TODO: INSERT DIAGRAM HERE
+<figure class="fullwidth">
+  <img src={edgImage.src} alt="A simple EDG example." />
+</figure>
+
+As obvious by the diagram, we do add the complication of defining constraining
+enabling and discharging edges. These are somewhat self-explanatory, and further
+reading can once again be done in the [full paper](/resources/dissertation.pdf).
 
 As an aside, we found that the actual constructions of these diagrams was
-considerably harder that initially expected. Namely the deconstruction of vague
-ideas into distinct "decisions" became particularly hard even when planning
-thoroughly.
+considerably harder than initially expected. The entire concept of planning out
+the distinct decisions that one would _potentially_ make beforehand posed a
+considerable challenge.
 
 ## implementation
 
@@ -229,7 +256,8 @@ without a disk<SideNote>This includes the OS, which we netbooted within an
 air-gapped VLAN. All the booted images were also signed and verified using
 secureboot and securely generated private keys.</SideNote>. By running
 disklessly, the entire system was ephemeral. This meant that downloading files
-and processing them later was not a feasible (or RAM efficient) option.
+and processing them after-the-fact was not a feasible (or memory efficient)
+option.
 
 The nifty optimisation which came out of this was processing any input HTTP
 frame by frame. Each frame was passed in order to a "forgetful"<SideNote>By
@@ -239,29 +267,40 @@ was consuming a URL or not. This actually turned out to be an optimisations, as
 it meant that the each thread only needed a 2 buffers; one for the current HTTP
 FRAME and one for the current URL being processed.
 
-It should be noted that the implementation was written in rust and used the arti
-and hyper libraries extensively. During the process we were able to contribute
-to both projects.
+The implementation was written in rust and used the arti and hyper libraries
+extensively. During the process we were able to contribute to both projects.
 
 Once again, if any of this interests you, feel free to check out the
 [full paper](/resources/dissertation.pdf).
 
-## performance
+### performance
 
-We compare our results to those found in DePascale et al's work, as that was the
-only comparable software found from the literature review. They further compare
-CRATOR to ACHE (Barbosa et al.).
+A natural objection to zero-trust constraints is that they introduce overhead.
+Therefore, we benchmarked Trawler against comparable work to verify whether our
+ethical architecture came at a performance cost.
 
-CRATOR is written in python whilst ACHE is written in Java. Our own crawler
-TRAWLER<SideNote>Tor + Crawler</SideNote> was written in Rust.
+We compare our results to those found in DePascale et al's (2024) work,
+[CRATOR](https://arxiv.org/html/2405.06356v1). It seemed to be the only
+immediately comparable software found in the literature review, and was written
+in python. Other literature created large distributed clusters, or did not
+provide their software openly. As a further point of comparison, CRATOR compares
+it's own results to those of ACHE (Barbosa et al., 2007), a crawler written in
+Java. Our own implementation is called Trawler, short for Tor + crawler.
+
+Testing was run 10 times for a each selected crawl depth<SideNote>Using a
+breadth first search.</SideNote>, and anonymised metrics were emitted to an
+OpenTelemetry collector.
 
 From the gathered performance metrics, our crawler outpaced CRATOR and ACHE
-considerably. We attribute this to two possible trains of thought. First the
-choice of technology gives crawler a massive advantage in terms of memory usage.
-Rust is wonderful for making simple programs small and fast. Second, the
-algorithmic choice (and a coincidence of the ethical decisions made previously),
-allowed for TRAWLER to scale in a much more memory-concious manner which allowed
+considerably. We attribute this to two possible advantages. First the choice of
+technology gives Trawler a massive advantage in terms of memory usage. Rust is
+wonderful for making simple programs small and fast. Second, the algorithmic
+choice (and a coincidence of the ethical decisions made previously), allowed for
+Trawler to scale in a much more memory-concious manner which allowed
 parallelisation to shine.
+
+Critically, the performance gap does not remain constant but widens with crawl
+depth, which is consistent with our claim of architectural benefits.
 
 <figure>
   <MarginNote>Execution time (s). Lower is better.</MarginNote>
@@ -271,10 +310,9 @@ parallelisation to shine.
   />
 </figure>
 
-As obvious from the execution time figures, Trawler outperforms CRATOR
-considerably. This was a very favourable result, given that Trawler also
-performs further auditing and security checks on top of the existing load of
-crawling.
+As obvious from the execution time figures, Trawler outperforms CRATOR. This was
+a very favourable result, given that Trawler also performs further auditing and
+security checks on top of the existing load of crawling.
 
 ## further reading
 
